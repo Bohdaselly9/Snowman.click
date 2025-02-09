@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сніговик Тапалка</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            text-align: center;
+            background-color: #ADD8E6;
+        }
+        img {
+            width: 200px;
+            cursor: pointer;
+        }
+        h2 {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Натискай на сніговика!</h2>
+    <img id="snowman" src="https://i.imgur.com/YOUR_SNOWMAN.png" alt="Сніговик">
+    <p>Очки: <span id="score">0</span></p>
+
+    <script>
+        let score = 0;
+        const snowman = document.getElementById("snowman");
+        const scoreDisplay = document.getElementById("score");
+        const tg = window.Telegram.WebApp;
+
+        snowman.addEventListener("click", () => {
+            score++;
+            scoreDisplay.textContent = score;
+
+            // Надсилаємо бали в Telegram-бота
+            tg.sendData(score.toString());
+        });
+
+        tg.expand(); // Робимо веб-апку на весь екран
+    </script>
+</body>
+</html>
